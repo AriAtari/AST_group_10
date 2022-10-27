@@ -1,9 +1,8 @@
 ########################################################################
-# Team <your team name>: <names>
-# AST304, Fall 2020
+# Team Spectacular Stellars: Arian Andalib, Ashley Stone, Jonathan Kho, Emma Oswald
+# AST 304, Fall 2022
 # Michigan State University
 ########################################################################
-
 """
 Values of physical constants imported from astropy
 """
