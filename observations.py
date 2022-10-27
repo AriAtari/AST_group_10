@@ -1,9 +1,8 @@
 ########################################################################
-# Team <your team name>: <names>
-# AST304, Fall 2020
+# Team Spectacular Stellars: Arian Andalib, Ashley Stone, Jonathan Kho, Emma Oswald
+# AST 304, Fall 2022
 # Michigan State University
 ########################################################################
-
 """
 Reads in table 4 of Joyce et al. (2018) containing masses and radii
 of white dwarf stars. You should not need to alter this file. The routines
