@@ -1,16 +1,18 @@
 ########################################################################
 # Team Spectacular Stellars: Arian Andalib, Ashley Stone, Jonathan Kho, Emma Oswald
-# AST 304, Fall 2022
+# AST304, Fall 2022
 # Michigan State University
 ########################################################################
+
 """
 <Description of this module goes here: what it does, how it's used.>
 """
 
 import numpy as np
-from eos import # fill this in
-from ode import # fill this in
-from astro_const import # fill this in
+from numpy import pi
+from eos import density
+from ode import rk4
+from astro_const import G
 
 def stellar_derivatives(m,z,mue):
     """
@@ -30,9 +32,15 @@ def stellar_derivatives(m,z,mue):
             Lagrangian derivatives dr/dm, dP/dm
     """
     
+    rho = density(z[1], mue)
+    
     dzdm = np.zeros_like(z)
 
     # evaluate dzdm
+    drdm = (4*pi*z[0]**2*rho)**(-1)
+    dPdm = (-G*m)/(4*pi*z[0]**4)
+    
+    dzdm = np.array([drdm, dPdm])
     
     return dzdm
 
