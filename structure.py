@@ -8,9 +8,9 @@
 """
 
 import numpy as np
-from eos import # fill this in
-from ode import # fill this in
-from astro_const import # fill this in
+from eos import * # fill this in
+from ode import * # fill this in
+from astro_const import * # fill this in
 
 def stellar_derivatives(m,z,mue):
     """
@@ -74,8 +74,12 @@ def lengthscales(m,z,mue):
     """
 
     # fill this in
-    pass
-    return
+    
+    Hr = 4*np.py*z[0]**3*eos.density(z[1],mue)
+    
+    Hp = 4*np.py*z[0]**4*z[1]/(astro_const.G*m)
+    
+    return np.array(Hr,Hp)
     
 def integrate(Pc,delta_m,eta,xi,mue,max_steps=10000):
     """
@@ -107,7 +111,8 @@ def integrate(Pc,delta_m,eta,xi,mue,max_steps=10000):
     p_step = np.zeros(max_steps)
     
     # set starting conditions using central values
-    
+    m = delta_m
+    z = [0,Pc]
     Nsteps = 0
     for step in range(max_steps):
         radius = z[0]
@@ -116,11 +121,14 @@ def integrate(Pc,delta_m,eta,xi,mue,max_steps=10000):
         if (pressure < eta*Pc):
             break
         # store the step
-        
+        m_step[step] = m
+        r_step[step] = z[0]
+        p_step[step] = z[1]
         # set the stepsize
-        
+        h = xi*min(lengthscales(m,z,mue))
         # take a step
-        
+        z = stellar_derivatives(m,z,mue)*h
+        m += h
         # increment the counter
         Nsteps += 1
     # if the loop runs to max_steps, then signal an error
