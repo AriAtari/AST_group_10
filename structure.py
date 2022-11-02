@@ -9,7 +9,7 @@
 
 import numpy as np
 from eos import * # fill this in
-from ode import * # fill this in
+from ode import rk4 # fill this in
 from astro_const import * # fill this in
 
 def stellar_derivatives(m,z,mue):
@@ -112,7 +112,7 @@ def integrate(Pc,delta_m,eta,xi,mue,max_steps=10000):
     
     # set starting conditions using central values
     m = delta_m
-    z = [0,Pc]
+    z = central_values(Pc,delta_m,mue)
     Nsteps = 0
     for step in range(max_steps):
         radius = z[0]
@@ -127,7 +127,7 @@ def integrate(Pc,delta_m,eta,xi,mue,max_steps=10000):
         # set the stepsize
         h = xi*min(lengthscales(m,z,mue))
         # take a step
-        z = stellar_derivatives(m,z,mue)*h
+        z = ode.rk4(stellar_derivatives,m,z,h)
         m += h
         # increment the counter
         Nsteps += 1
