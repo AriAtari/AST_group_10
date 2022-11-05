@@ -22,7 +22,7 @@ def pressure(rho, mue):
     """
     
     # replace following lines with body of routine
-    p = 0.0*rho
+    p = 1/5*((3*(np.pi))/8)**(2/3)*(h**2/m_e)*(rho/(mue*m_u))**(5/3)
     return p
 
 def density(p, mue):
@@ -38,5 +38,5 @@ def density(p, mue):
     """
     
     # replace following lines with body of routine
-    rho = 0.0*p
+    rho = ((p/(1/5*((3*(np.pi))/8)**(2/3)*(h**2/m_e)))**(3/5))*(mue*m_u)
     return rho
