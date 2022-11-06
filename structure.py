@@ -30,9 +30,15 @@ def stellar_derivatives(m,z,mue):
             Lagrangian derivatives dr/dm, dP/dm
     """
     
+    rho = density(z[1], mue)
+    
     dzdm = np.zeros_like(z)
 
     # evaluate dzdm
+    drdm = (4*pi*z[0]**2*rho)**(-1)
+    dPdm = (-G*m)/(4*pi*z[0]**4)
+    
+    dzdm = np.array([drdm, dPdm])
     
     return dzdm
 
@@ -153,4 +159,6 @@ def pressure_guess(m,mue):
             guess for pressure
     """
     # fill this in
+    Pguess = (G**5/astro_const.Ke**4)*(m*mue**2)**10/3
+    
     return Pguess
