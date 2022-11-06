@@ -35,8 +35,8 @@ def stellar_derivatives(m,z,mue):
     dzdm = np.zeros_like(z)
 
     # evaluate dzdm
-    drdm = (4*pi*z[0]**2*rho)**(-1)
-    dPdm = (-G*m)/(4*pi*z[0]**4)
+    drdm = (4*np.pi*z[0]**2*rho)**(-1)
+    dPdm = (-G*m)/(4*np.pi*z[0]**4)
     
     dzdm = np.array([drdm, dPdm])
     
@@ -90,11 +90,11 @@ def lengthscales(m,z,mue):
 
     # fill this in
     
-    Hr = 4*np.py*z[0]**3*eos.density(z[1],mue)
+    Hr = 4*np.pi*z[0]**3*density(z[1],mue)
     
-    Hp = 4*np.py*z[0]**4*z[1]/(astro_const.G*m)
+    Hp = 4*np.pi*z[0]**4*z[1]/(G*m)
     
-    return np.array(Hr,Hp)
+    return np.array([Hr,Hp])
     
 def integrate(Pc,delta_m,eta,xi,mue,max_steps=10000):
     """
@@ -142,7 +142,7 @@ def integrate(Pc,delta_m,eta,xi,mue,max_steps=10000):
         # set the stepsize
         h = xi*min(lengthscales(m,z,mue))
         # take a step
-        z = ode.rk4(stellar_derivatives,m,z,h)
+        z = rk4(stellar_derivatives,m,z,h,mue)
         m += h
         # increment the counter
         Nsteps += 1
@@ -168,6 +168,10 @@ def pressure_guess(m,mue):
             guess for pressure
     """
     # fill this in
-    Pguess = (G**5/astro_const.Ke**4)*(m*mue**2)**10/3
+    #alpha = 3/(13.5*np.pi)
+    #beta = 3/(4*np.pi)
+    #Pguess = (alpha**5/beta**(20/3))*(G**5/Ke**4)*(m*mue**2)**(10/3)
+    
+    Pguess = (G**5/Ke**4)*(m*mue**2)**(10/3)
     
     return Pguess

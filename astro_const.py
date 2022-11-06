@@ -9,6 +9,8 @@ Values of physical constants imported from astropy
 
 import astropy.constants as _ac
 import astropy.units as _au
+import numpy as np
+import astro_const as ac
 
 # mathematical constants
 from numpy import pi
