@@ -132,20 +132,26 @@ def integrate(Pc,delta_m,eta,xi,mue,max_steps=10000):
     for step in range(max_steps):
         radius = z[0]
         pressure = z[1]
+        
         # are we at the surface?
         if (pressure < eta*Pc):
             break
+            
         # store the step
         m_step[step] = m
         r_step[step] = z[0]
         p_step[step] = z[1]
+        
         # set the stepsize
         h = xi*min(lengthscales(m,z,mue))
+        
         # take a step
         z = rk4(stellar_derivatives,m,z,h,mue)
         m += h
+        
         # increment the counter
         Nsteps += 1
+        
     # if the loop runs to max_steps, then signal an error
     else:
         raise Exception('too many iterations')
@@ -168,9 +174,11 @@ def pressure_guess(m,mue):
             guess for pressure
     """
     # fill this in
-    #alpha = 3/(13.5*np.pi)
-    #beta = 3/(4*np.pi)
-    #Pguess = (alpha**5/beta**(20/3))*(G**5/Ke**4)*(m*mue**2)**(10/3)
+    
+    # For optional calibration
+    # alpha = 
+    # beta = 
+    # Pguess = (alpha**5/beta**(20/3))*(G**5/Ke**4)*(m*mue**2)**(10/3)
     
     Pguess = (G**5/Ke**4)*(m*mue**2)**(10/3)
     
