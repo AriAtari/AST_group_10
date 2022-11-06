@@ -61,8 +61,15 @@ def central_values(Pc,delta_m,mue):
         z = array([ r, p ])
             central values of radius and pressure (units = ?)
     """
-    z = np.zeros(2)
     # compute initial values of z = [ r, p ]
+    m = delta_m
+    
+    P = Pc
+    rho = density(P, mue)
+    r = ((3*m)/(4*np.pi*rho))**(1/3)
+    
+    z = [r, P]
+    
     return z
     
 def lengthscales(m,z,mue):
