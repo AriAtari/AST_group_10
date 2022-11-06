@@ -8,6 +8,7 @@
 """
 
 import astro_const as ac
+import numpy as np
 
 def pressure(rho, mue):
     """
@@ -22,7 +23,7 @@ def pressure(rho, mue):
     """
     
     # replace following lines with body of routine
-    p = 1/5*((3*(np.pi))/8)**(2/3)*(h**2/m_e)*(rho/(mue*m_u))**(5/3)
+    p = (1/5)*(3/(8*(np.pi)))**(2/3)*(ac.h**2/ac.m_e)*(rho/(mue*ac.m_u))**(5/3)
     return p
 
 def density(p, mue):
@@ -38,5 +39,5 @@ def density(p, mue):
     """
     
     # replace following lines with body of routine
-    rho = ((p/(1/5*((3*(np.pi))/8)**(2/3)*(h**2/m_e)))**(3/5))*(mue*m_u)
+    rho = ((p/((1/5)*(3/(8*(np.pi)))**(2/3)*(ac.h**2/ac.m_e)))**(3/5))*(mue*ac.m_u)
     return rho
