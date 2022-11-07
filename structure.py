@@ -49,15 +49,15 @@ def central_values(Pc,delta_m,mue):
     
     Arguments
         Pc
-            central pressure (units = ?)
+            central pressure (units = Pascal)
         delta_m
-            core mass (units = ?)
+            core mass (units = kg)
         mue
             nucleon/electron ratio
     
     Returns
         z = array([ r, p ])
-            central values of radius and pressure (units = ?)
+            central values of radius and pressure (units =[ m, Pascal])
     """
     
     # compute initial values of z = [ r, p ]
@@ -78,14 +78,14 @@ def lengthscales(m,z,mue):
     
     Arguments
         m
-            current mass coordinate (units = ?)
+            current mass coordinate (units = kg)
         z (array)
-           [ r, p ] (units = ?)
+           [ r, p ] (units =[ m, Pascal])
         mue
             mean electron weight
     
     Returns
-        z/|dzdm| (units = ?)
+        z/|dzdm| (units =[ m, Pascal ])
     """
 
     # fill this in
@@ -102,9 +102,9 @@ def integrate(Pc,delta_m,eta,xi,mue,max_steps=10000):
 
     Arguments
         Pc
-            central pressure (units = ?)
+            central pressure (units = Pascal)
         delta_m
-            initial offset from center (units = ?)
+            initial offset from center (units = kg)
         eta
             The integration stops when P < eta * Pc
         xi
@@ -118,7 +118,7 @@ def integrate(Pc,delta_m,eta,xi,mue,max_steps=10000):
     Returns
         m_step, r_step, p_step
             arrays containing mass coordinates, radii and pressures during 
-            integration (what are the units?)
+            integration (units:[kg,m, Pascal])
     """
         
     m_step = np.zeros(max_steps)
@@ -165,7 +165,7 @@ def pressure_guess(m,mue):
     
     Arguments
         m
-            mass of white dwarf (units are ?)
+            mass of white dwarf (units are kg)
         mue
             mean electron mass
     
