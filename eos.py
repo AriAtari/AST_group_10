@@ -4,7 +4,7 @@
 # Michigan State University
 ########################################################################
 """
-<Description of this module goes here: what it does, how it's used.>
+<The eos module is the starter code for the equation of state. >
 """
 
 import astro_const as ac

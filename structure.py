@@ -4,7 +4,7 @@
 # Michigan State University
 ########################################################################
 """
-<Description of this module goes here: what it does, how it's used.>
+<This module is starter code to integrate stellar structure equations>
 """
 
 import numpy as np
